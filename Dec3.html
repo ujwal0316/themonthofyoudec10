@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Dec 3</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=block" rel="stylesheet"/>
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { overflow-x: hidden; }
+  body {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: "Poppins", sans-serif; text-align: center;
+    padding: 1.4rem;
+    background: radial-gradient(circle at 50% 35%, #f7edff, #e4d3ff, #d2b8ff, #c0a0ff);
+    position: relative; color: #351f4f; overflow: hidden;
+  }
+
+  /* aurora galaxy background */
+  body::before, body::after {
+    content: ""; position: absolute; inset: -40%;
+    filter: blur(95px); opacity: .55; z-index: 0;
+  }
+  body::before {
+    background: conic-gradient(from 0deg, #b07dff66, #ffffff77, #d68cff55, #b07dff66);
+    animation: spin 32s linear infinite;
+  }
+  body::after {
+    background: conic-gradient(from 180deg, #f0d1ff44, #ffffff55, #b182ff44, #f0d1ff44);
+    animation: spin 44s linear infinite reverse;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Home button */
+  .home-btn {
+    position: fixed; top: 12px; left: 12px; z-index: 10;
+    background: rgba(255,255,255,.9); padding: 6px 14px; border-radius: 999px;
+    display: flex; align-items: center; text-decoration: none; font-size: 1.1rem; font-weight: 600;
+    box-shadow: 0 3px 10px rgba(0,0,0,.15); color: #4a2a8a;
+  }
+
+  /* Title */
+  h1 {
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(2.3rem, 8vw, 3.8rem);
+    color: #7427e8; margin-bottom: .2em; z-index: 2;
+    animation: fade .8s ease forwards;
+  }
+  .subtitle {
+    font-size: clamp(1rem, 3.5vw, 1.25rem);
+    color: #4d3275; opacity: .9; margin-bottom: 1.4rem;
+    animation: fade 1.2s ease forwards;
+  }
+
+  /* Floating background words (fixed - added to fix fade/float) */
+  .bg-word {
+    position: absolute;
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(1.8rem, 7vw, 3rem);
+    color: #7427e8;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    filter: blur(0.3px);
+    animation: wordFloat 16s ease-in-out infinite;
+  }
+
+  @keyframes wordFloat {
+    0% {
+      opacity: 0;
+      transform: translateY(20px) scale(0.9);
+    }
+    20% {
+      opacity: 0.18;
+    }
+    50% {
+      opacity: 0.28;
+      transform: translateY(-10px) scale(1);
+    }
+    80% {
+      opacity: 0.15;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-30px) scale(1.03);
+    }
+  }
+
+  /* message box */
+  .message-box {
+    background: rgba(255,255,255,.72);
+    backdrop-filter: blur(16px);
+    border-radius: 20px;
+    padding: 22px 24px;
+    max-width: 760px;
+    box-shadow: 0 6px 22px rgba(60,0,120,.18), inset 0 0 14px rgba(255,255,255,.55);
+    animation: fade 1.8s ease forwards;
+    z-index: 2;
+  }
+  @keyframes fade { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+  .message {
+    font-size: clamp(1rem, 3.4vw, 1.18rem);
+    text-align: justify;
+    line-height: 1.65;
+    text-justify: inter-word;
+    color: #2f2247;
+  }
+
+  /* Floating stars / moons */
+  .star {
+    position: absolute;
+    font-size: 22px;
+    animation: float linear forwards; opacity: .8; z-index: 0;
+  }
+  @keyframes float {
+    0% { opacity: 0; transform: translateY(115vh) scale(.8); }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-120vh) scale(1.06); }
+  }
+
+  /* navigation buttons */
+  nav {
+    margin-top: 1.8rem; display: flex; gap: 12px;
+    justify-content: center; flex-wrap: wrap; z-index: 3;
+  }
+  .btn {
+    padding: 12px 20px; border-radius: 999px;
+    text-decoration: none; font-weight: 600; font-size: .95rem;
+    transition: .25s; box-shadow: 0 4px 12px rgba(0,0,0,.12);
+  }
+  .btn:active { transform: scale(.96); }
+
+  .yesterday { background: #c4a2ff; color: #fff; }
+  .archive { background: #7b5dff; color: #fff; }
+  .tomorrow {
+    background: #e6dcff; color: #4b3a7c; position: relative;
+  }
+
+  .tomorrow .popup {
+    opacity: 0; position: absolute; bottom: -65px; left: 50%;
+    transform: translateX(-50%);
+    background: #f3ecff; padding: 10px 16px; border-radius: 14px;
+    font-size: .88rem; font-weight: 500; box-shadow: 0 4px 10px rgba(0,0,0,.15);
+    transition: .3s ease; white-space: nowrap;
+  }
+  .tomorrow:hover .popup { opacity: 1; bottom: -55px; }
+
+  @media (max-width: 480px) {
+    .message-box { padding: 18px 18px; }
+  }
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="home-btn">🏠 Home</a>
+
+<h1>Dec 3</h1>
+<div class="subtitle">A Hopeful Wish</div>
+
+<!-- background floating words (with animation-delay so they fade in/float) -->
+<span class="bg-word" style="top: 12%; left: 8%; animation-delay: 0s">Love</span>
+<span class="bg-word" style="top: 20%; right: 6%; animation-delay: 3s">Hope</span>
+<span class="bg-word" style="top: 60%; left: 15%; animation-delay: 6s">Forever</span>
+<span class="bg-word" style="top: 70%; right: 10%; animation-delay: 9s">Always</span>
+<span class="bg-word" style="top: 38%; left: 55%; animation-delay: 12s">Us</span>
+<span class="bg-word" style="top: 48%; left: 25%; animation-delay: 15s">Magic</span>
+<span class="bg-word" style="top: 30%; right: 35%; animation-delay: 18s">Infinity</span>
+
+<div class="message-box">
+  <p class="message">
+    We are getting one step closer to your bday everyday. Last two days adro happy agi ide anta ankond idini, eh month ond job agbitre ninge eh month ina chenag irute nang hope ide eh month yenadro ond olledh agute ning ond job agute anta. I want to see you happy and smiling like before ah day thumba bega barli and eh month ninge kushi kodli. 28 more days to your bday, Happy Birthday to you in advance 🫂💋.
+  </p>
+</div>
+
+<nav>
+  <a href="dec2.html" class="btn yesterday">⬅ Yesterday</a>
+  <a href="archive.html" class="btn archive">Love Calendar</a>
+  <a class="btn btn-tomorrow" href="Dec4.html">
+        Tomorrow ➜
+      </a>
+</nav>
+
+<script>
+  /* floating icons */
+  const icons = ["✨","💫","🌙","⭐","🪐"];
+  function floatStars(){
+    const s = document.createElement("span");
+    s.className = "star";
+    s.textContent = icons[(Math.random() * icons.length) | 0];
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.animationDuration = 6 + Math.random() * 6 + "s";
+    document.body.appendChild(s);
+    // remove after animation to keep DOM clean
+    setTimeout(() => s.remove(), 13000);
+  }
+  setInterval(floatStars, 450);
+</script>
+
+</body>
+</html>

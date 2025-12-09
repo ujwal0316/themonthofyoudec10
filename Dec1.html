@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dec 1</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=block"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+        -webkit-text-size-adjust: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        overflow-x: hidden;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        position: relative;
+        padding: 1.4rem;
+
+        /* 🌿 Mint Fresh Gradient */
+        background: radial-gradient(
+          circle at 50% 40%,
+          #f0fff7 0%,
+          #d0f7e7 40%,
+          #b7f1dc 75%,
+          #a8ecd4 100%
+        );
+        color: #1e3d32;
+        overflow: hidden;
+      }
+
+      /* Mint aurora glow */
+      body::before,
+      body::after {
+        content: "";
+        position: absolute;
+        inset: -40%;
+        filter: blur(90px);
+        opacity: 0.6;
+        z-index: 0;
+        pointer-events: none;
+      }
+      body::before {
+        background: conic-gradient(
+          from 0deg,
+          rgba(150, 255, 210, 0.45),
+          rgba(255, 255, 255, 0.55),
+          rgba(120, 220, 190, 0.4),
+          rgba(150, 255, 210, 0.45)
+        );
+        animation: spin 28s linear infinite;
+      }
+      body::after {
+        background: conic-gradient(
+          from 180deg,
+          rgba(180, 255, 215, 0.35),
+          rgba(220, 255, 240, 0.45),
+          rgba(130, 230, 200, 0.35),
+          rgba(180, 255, 215, 0.35)
+        );
+        animation: spin 36s linear infinite reverse;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Home button */
+      .home-btn {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 5;
+        text-decoration: none;
+        font-size: 1.2rem;
+        background: rgba(255, 255, 255, 0.82);
+        padding: 6px 12px;
+        border-radius: 999px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+        display: flex;
+        align-items: center;
+        color: #1f5c4b;
+      }
+      .home-btn span {
+        margin-left: 6px;
+        font-size: 0.9rem;
+        color: #1f5c4b;
+      }
+
+      /* Title */
+      h1 {
+        font-family: "Great Vibes", cursive;
+        color: #1f5c4b;
+        font-size: clamp(2.6rem, 9vw, 4rem);
+        margin: 0;
+        z-index: 3;
+        animation: fade 1.4s ease forwards;
+      }
+      .subtitle {
+        margin-top: 6px;
+        font-size: clamp(1rem, 3.5vw, 1.3rem);
+        font-weight: 500;
+        color: #2a6e59;
+        opacity: 0;
+        animation: fade 2s ease forwards;
+        z-index: 3;
+      }
+
+      /* Floating background words */
+      .bg-word {
+        position: absolute;
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(1.8rem, 7vw, 3rem);
+        color: #1f6e5a;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1;
+        filter: blur(0.3px);
+        animation: wordFloat 16s ease-in-out infinite;
+      }
+      @keyframes wordFloat {
+        0% {
+          opacity: 0;
+          transform: translateY(20px) scale(0.9);
+        }
+        20% {
+          opacity: 0.18;
+        }
+        50% {
+          opacity: 0.28;
+          transform: translateY(-10px) scale(1);
+        }
+        80% {
+          opacity: 0.15;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-30px) scale(1.03);
+        }
+      }
+
+      /* Message box */
+      .message-box {
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(16px);
+        border-radius: 20px;
+        max-width: 780px;
+        padding: 22px 26px;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12),
+          inset 0 0 18px rgba(255, 255, 255, 0.45);
+        opacity: 0;
+        animation: fade 2.2s ease forwards;
+        z-index: 2;
+        margin-top: 1.4em;
+      }
+
+      .message {
+        font-size: clamp(1rem, 3.8vw, 1.2rem);
+        line-height: 1.6;
+        text-align: justify;
+        color: #214337;
+      }
+
+      /* Fade animation */
+      @keyframes fade {
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Buttons */
+      .actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        margin-top: 1.5em;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-block;
+        background: linear-gradient(90deg, #4ed1a8, #7de5c6);
+        padding: 14px 32px;
+        border-radius: 999px;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: clamp(1rem, 4vw, 1.1rem);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        position: relative;
+        z-index: 3;
+      }
+      .btn:active {
+        transform: scale(0.96);
+      }
+
+      .popup {
+        position: absolute;
+        bottom: -65px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #e0fff3;
+        color: #1f6e5a;
+        padding: 10px 18px;
+        border-radius: 14px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s ease;
+        white-space: nowrap;
+      }
+      .btn:hover .popup,
+      .btn:active .popup {
+        opacity: 1;
+        bottom: -55px;
+      }
+
+      /* Floating mint emojis */
+      .float {
+        position: absolute;
+        font-size: 22px;
+        opacity: 0.85;
+        animation: drift linear forwards;
+        z-index: 0;
+      }
+      @keyframes drift {
+        0% {
+          transform: translateY(110vh) scale(0.8) rotate(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-115vh) scale(1.05) rotate(360deg);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="index.html" class="home-btn" aria-label="Back to home">
+      🏠<span>Home</span>
+    </a>
+
+    <h1>Dec 1</h1>
+    <div class="subtitle">The Month of You</div>
+
+    <!-- floating background words -->
+    <span class="bg-word" style="top:12%; left:8%; animation-delay:0s">Love</span>
+    <span class="bg-word" style="top:20%; right:6%; animation-delay:3s">Hope</span>
+    <span class="bg-word" style="top:60%; left:15%; animation-delay:6s">Forever</span>
+    <span class="bg-word" style="top:70%; right:10%; animation-delay:9s">Always</span>
+    <span class="bg-word" style="top:38%; left:55%; animation-delay:12s">Us</span>
+    <span class="bg-word" style="top:48%; left:25%; animation-delay:15s">Magic</span>
+    <span class="bg-word" style="top:30%; right:35%; animation-delay:18s">Infinity</span>
+
+    <div class="message-box">
+      <div class="message">
+        Hey Baby !!! It's that time of the year again!! It's your birthday month
+        🥳 and I'm totally excited like before. December our month of hope, like
+        last tym eh salli nu I'm with you to make this month a memorable one
+        even without us being physically present we still can make this month
+        your memorable one. By celebrating this month i want to thank you for
+        being in my life and making my life happy and wonderful. Let this month
+        bring all the joy all the things u want and wish for in life, i know for
+        sure december never disappoints. Countdown to your birthday begins today
+        and I'm already excited let's hope for a happy month ahead. Happy
+        Birthday in advance 🫶.
+      </div>
+    </div>
+
+    <!-- BUTTONS: Tomorrow + Love Calendar -->
+    <div class="actions">
+      <a class="btn" href="archive.html" style="background:linear-gradient(90deg,#4ebd9e,#7ad6ba);">
+        Love Calendar
+      </a>
+      <a class="btn" href="dec2.html">
+        Tomorrow ➜
+      </a>
+    </div>
+
+    <script>
+      /* floating mint emojis */
+      const ems = ["🍃", "🌿", "🪴", "✨", "🪽"];
+      let hearts = 0;
+
+      function floatHeart() {
+        if (hearts > 25) return;
+        const h = document.createElement("span");
+        h.className = "float";
+        h.textContent = ems[(Math.random() * ems.length) | 0];
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.animationDuration = 6 + Math.random() * 6 + "s";
+        document.body.appendChild(h);
+        hearts++;
+        h.addEventListener("animationend", () => {
+          h.remove();
+          hearts--;
+        });
+      }
+      setInterval(floatHeart, 500);
+    </script>
+  </body>
+</html>

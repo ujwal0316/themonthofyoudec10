@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dec 2</title>
+
+    <!-- Fonts without flicker -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=block"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+        -webkit-text-size-adjust: 100%;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        position: relative;
+        padding: 1.4rem;
+        background: radial-gradient(
+          circle at 50% 40%,
+          #f4f7ff 0%,
+          #d4e7ff 40%,
+          #b7ccff 75%,
+          #9fb8ff 100%
+        );
+        color: #1f2840;
+        overflow: hidden;
+      }
+
+      /* Home button */
+      .home-btn {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 5;
+        text-decoration: none;
+        font-size: 1.2rem;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 6px 12px;
+        border-radius: 999px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .home-btn span {
+        margin-left: 6px;
+        font-size: 0.9rem;
+        color: #1f3360;
+      }
+
+      /* Aurora, but blue / night themed */
+      body::before,
+      body::after {
+        content: "";
+        position: absolute;
+        inset: -40%;
+        filter: blur(90px);
+        opacity: 0.6;
+        z-index: 0;
+      }
+      body::before {
+        background: conic-gradient(
+          from 0deg,
+          rgba(120, 170, 255, 0.45),
+          rgba(255, 255, 255, 0.55),
+          rgba(90, 120, 255, 0.4),
+          rgba(140, 190, 255, 0.45)
+        );
+        animation: spin 32s linear infinite;
+      }
+      body::after {
+        background: conic-gradient(
+          from 180deg,
+          rgba(180, 210, 255, 0.35),
+          rgba(210, 230, 255, 0.5),
+          rgba(130, 170, 255, 0.35),
+          rgba(180, 210, 255, 0.35)
+        );
+        animation: spin 44s linear infinite reverse;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Heading */
+      h1 {
+        font-family: "Great Vibes", cursive;
+        color: #244b92;
+        font-size: clamp(2.6rem, 9vw, 4rem);
+        margin: 0;
+        position: relative;
+        z-index: 3;
+        animation: fade 1.4s ease forwards;
+      }
+
+      /* Subtitle */
+      .subtitle {
+        margin-top: 6px;
+        font-size: clamp(1rem, 3.5vw, 1.3rem);
+        font-weight: 500;
+        color: #314465;
+        opacity: 0;
+        animation: fade 2s ease forwards;
+        z-index: 3;
+      }
+
+      /* background floating words (very subtle) */
+      .bg-word {
+        position: absolute;
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(1.8rem, 7vw, 3rem);
+        color: #274b9c;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1;
+        filter: blur(0.4px);
+        animation: wordFloat 18s ease-in-out infinite;
+      }
+      @keyframes wordFloat {
+        0% {
+          opacity: 0;
+          transform: translateY(20px) scale(0.9);
+        }
+        20% {
+          opacity: 0.16;
+        }
+        50% {
+          opacity: 0.25;
+          transform: translateY(-10px) scale(1);
+        }
+        80% {
+          opacity: 0.14;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-30px) scale(1.03);
+        }
+      }
+
+      /* Message card */
+      .message-box {
+        position: relative;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(18px);
+        border-radius: 22px;
+        max-width: 780px;
+        padding: 22px 26px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14),
+          inset 0 0 16px rgba(255, 255, 255, 0.55);
+        border: 1px solid rgba(200, 215, 255, 0.9);
+        opacity: 0;
+        animation: fade 2.2s ease forwards;
+        z-index: 2;
+        margin-top: 1.4em;
+        overflow: hidden;
+      }
+
+      /* soft moonlight shimmer in card */
+      .message-box::before {
+        content: "";
+        position: absolute;
+        inset: -20%;
+        background: radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 255, 255, 0.75) 0,
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 85% 35%,
+            rgba(210, 225, 255, 0.7) 0,
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 35% 85%,
+            rgba(230, 240, 255, 0.8) 0,
+            transparent 45%
+          );
+        mix-blend-mode: screen;
+        opacity: 0.35;
+        animation: twinkle 14s ease-in-out infinite alternate;
+        pointer-events: none;
+      }
+      @keyframes twinkle {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+          opacity: 0.22;
+        }
+        50% {
+          transform: translate3d(-6px, 4px, 0) scale(1.04);
+          opacity: 0.4;
+        }
+        100% {
+          transform: translate3d(4px, -6px, 0) scale(1.02);
+          opacity: 0.24;
+        }
+      }
+
+      .message {
+        font-size: clamp(1rem, 3.8vw, 1.2rem);
+        line-height: 1.6;
+        text-align: justify;
+        text-justify: inter-word;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Fade for heading/card */
+      @keyframes fade {
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Buttons container */
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 1.6em;
+        z-index: 3;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: clamp(0.95rem, 3.6vw, 1.05rem);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        touch-action: manipulation;
+        position: relative;
+      }
+      .btn:active {
+        transform: scale(0.97);
+      }
+
+      .btn-yesterday {
+        background: linear-gradient(90deg, #8cb3ff, #b7d0ff);
+        color: #0f2750;
+      }
+      .btn-archive {
+        background: linear-gradient(90deg, #6f63ff, #a39bff);
+        color: #ffffff;
+      }
+      .btn-tomorrow {
+        background: linear-gradient(90deg, #c3cde6, #e0e4f5);
+        color: #48526a;
+        opacity: 0.9;
+      }
+
+      /* tomorrow popup (locked) */
+      .btn-tomorrow .popup {
+        position: absolute;
+        bottom: -65px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #eef2ff;
+        color: #2d3a5d;
+        padding: 10px 18px;
+        border-radius: 14px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s ease;
+        white-space: nowrap;
+      }
+      .btn-tomorrow:hover .popup,
+      .btn-tomorrow:active .popup {
+        opacity: 1;
+        bottom: -55px;
+      }
+
+      /* Floating night emojis */
+      .float {
+        position: absolute;
+        font-size: 22px;
+        opacity: 0.8;
+        animation: drift linear forwards;
+        z-index: 0;
+      }
+      @keyframes drift {
+        0% {
+          transform: translateY(110vh) scale(0.8) rotate(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-115vh) scale(1.05) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .message-box {
+          padding: 18px 18px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="index.html" class="home-btn" aria-label="Back to home"
+      >🏠<span>Home</span></a
+    >
+
+    <h1>Dec 2</h1>
+    <div class="subtitle">A Piece of My Heart</div>
+
+    <!-- background floating words -->
+    <span class="bg-word" style="top: 12%; left: 8%; animation-delay: 0s"
+      >Heart</span
+    >
+    <span class="bg-word" style="top: 22%; right: 6%; animation-delay: 3s"
+      >Moon</span
+    >
+    <span class="bg-word" style="top: 60%; left: 15%; animation-delay: 6s"
+      >Us</span
+    >
+    <span class="bg-word" style="top: 70%; right: 10%; animation-delay: 9s"
+      >Always</span
+    >
+    <span class="bg-word" style="top: 38%; left: 55%; animation-delay: 12s"
+      >Dream</span
+    >
+    <span class="bg-word" style="top: 48%; left: 22%; animation-delay: 15s"
+      >Magic</span
+    >
+    <span class="bg-word" style="top: 30%; right: 35%; animation-delay: 18s"
+      >Infinite</span
+    >
+
+    <div class="message-box">
+      <div class="message">
+        It's Dec2 and after all those fights here we are again celebrating your
+        birthday month, hoping something good happens to you this month. You are
+        the happiness that i never expected in my life. Thank you for making me
+        a part of your life. 29 more days to celebrate YOU, Happy Birthday to
+        youuu in advance ❤😘.
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-yesterday" href="dec1.html">⬅ Yesterday</a>
+      <a class="btn btn-archive" href="archive.html">Love Calendar</a>
+      <a class="btn btn-tomorrow" href="Dec3.html">
+        Tomorrow ➜
+      </a>
+    </div>
+
+    <script>
+      /* floating night emojis */
+      const ems = ["🌙", "💫", "✨", "🪽", "⭐"];
+      let count = 0;
+      function floatNight() {
+        if (count > 25) return;
+        const h = document.createElement("span");
+        h.className = "float";
+        h.textContent = ems[(Math.random() * ems.length) | 0];
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.animationDuration = 6 + Math.random() * 6 + "s";
+        document.body.appendChild(h);
+        count++;
+        h.addEventListener("animationend", () => {
+          h.remove();
+          count--;
+        });
+      }
+      setInterval(floatNight, 500);
+    </script>
+  </body>
+</html>

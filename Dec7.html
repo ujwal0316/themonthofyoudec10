@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dec 7</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=block" rel="stylesheet" />
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{overflow-x:hidden}
+    body{
+      min-height:100vh;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      padding:1.4rem;text-align:center;font-family:"Poppins",sans-serif;
+      color:#4b2522;position:relative;overflow:hidden;
+
+      /* 🍑 Peach dreamy background */
+      background: radial-gradient(circle at 50% 35%, #fff5f0 0%, #ffd9cc 38%, #ffb7a3 72%, #ff9b8a 100%);
+    }
+
+    /* soft peach aurora */
+    body::before, body::after{
+      content:"";position:absolute;inset:-40%;filter:blur(92px);opacity:.58;z-index:0;pointer-events:none;
+    }
+    body::before{
+      background:conic-gradient(from 0deg,
+        rgba(255,195,170,0.5),
+        rgba(255,255,255,0.6),
+        rgba(255,160,155,0.4),
+        rgba(255,195,170,0.5)
+      );
+      animation:spin 30s linear infinite;
+    }
+    body::after{
+      background:conic-gradient(
+        from 180deg,
+        rgba(255,210,195,0.35),
+        rgba(255,235,225,0.5),
+        rgba(255,170,150,0.35),
+        rgba(255,210,195,0.35)
+      );
+      animation:spin 46s linear infinite reverse;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* Home */
+    .home-btn{
+      position:fixed; top:12px; left:12px; z-index:12;
+      background:rgba(255,255,255,.94); padding:6px 14px; border-radius:999px;
+      text-decoration:none; display:flex; align-items:center; font-weight:600;
+      box-shadow:0 3px 10px rgba(0,0,0,.08);
+      color:#c25a4c;
+    }
+    .home-btn span{ margin-left:8px; font-size:.95rem; color:#c25a4c }
+
+    /* heading */
+    h1{
+      font-family:"Great Vibes",cursive;
+      color:#d16454;
+      font-size:clamp(2.4rem,8vw,3.8rem);
+      margin-bottom:.15em;
+      z-index:3;
+    }
+    .subtitle{
+      font-size:clamp(1rem,3.5vw,1.15rem);
+      color:#8b3c34;
+      margin-bottom:1.2rem;
+    }
+
+    /* floating bg words */
+    .bg-word{
+      position:absolute;
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(1.6rem,6.2vw,2.8rem);
+      color:#e0705e;
+      opacity:0;
+      pointer-events:none;
+      z-index:1;
+      animation:wordFloat 16s ease-in-out infinite;
+      text-shadow:0 2px 8px rgba(0,0,0,0.08);
+    }
+    @keyframes wordFloat{
+      0%{opacity:0;transform:translateY(18px) scale(.94)}
+      20%{opacity:.18}
+      50%{opacity:.28;transform:translateY(-8px) scale(1)}
+      80%{opacity:.15}
+      100%{opacity:0;transform:translateY(-28px) scale(1.03)}
+    }
+
+    /* message box */
+    .message-box{
+      position:relative;
+      background:rgba(255,255,255,0.8);
+      backdrop-filter:blur(12px);
+      border-radius:18px;
+      padding:22px 24px;
+      max-width:820px;
+      box-shadow:0 10px 30px rgba(180,90,70,.16);
+      z-index:3;
+    }
+    .message{
+      font-size:clamp(1rem,3.4vw,1.18rem);
+      line-height:1.6;
+      text-align:justify;
+      color:#4b2522;
+    }
+
+    /* floating emojis */
+    .float{
+      position:absolute;
+      font-size:22px;
+      opacity:.94;
+      z-index:0;
+      animation:drift linear forwards;
+      pointer-events:none;
+      text-shadow:0 2px 6px rgba(0,0,0,0.08);
+    }
+    @keyframes drift{
+      0%{transform:translateY(110vh) scale(.82);opacity:0}
+      10%{opacity:1}
+      90%{opacity:1}
+      100%{transform:translateY(-120vh) scale(1.06);opacity:0}
+    }
+
+    /* nav/buttons */
+    nav{
+      margin-top:1.6rem;
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      z-index:4;
+    }
+    .btn{
+      padding:12px 20px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:600;
+      font-size:.95rem;
+      box-shadow:0 4px 12px rgba(0,0,0,.12);
+      background:white;
+      display:inline-flex;align-items:center;gap:8px;
+      border:none;
+    }
+    .btn:active{transform:scale(.96)}
+
+    .yesterday{
+      color:#c25a4c;
+      background:linear-gradient(90deg,#ffe3d7,#ffd0c2);
+    }
+    .archive{
+      background:linear-gradient(90deg,#ff8e7f,#ffb4a2);
+      color:white;
+    }
+
+    /* peach themed tomorrow button + no black outline */
+    .tomorrow{
+      background:linear-gradient(90deg,#ffe3d7,#ffece4);
+      color:#8b3c34;
+      position:relative;
+      border:none;
+      outline:none;
+      cursor:pointer;
+    }
+    .tomorrow:focus,
+    .tomorrow:focus-visible{
+      outline:none;
+      box-shadow:0 4px 12px rgba(0,0,0,.12);
+    }
+
+    .tomorrow .popup{
+      opacity:0;
+      position:absolute;
+      bottom:-66px;
+      left:50%; transform:translateX(-50%);
+      background:#ffe8df;
+      color:#c25a4c;
+      padding:10px 14px;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(190,90,70,0.16);
+      transition:.2s;
+      white-space:nowrap;
+      font-size:.9rem;
+      pointer-events:none;
+    }
+    .tomorrow:hover .popup{
+      opacity:1;
+      bottom:-56px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="index.html" class="home-btn">🏠 <span>Home</span></a>
+
+  <h1>Dec 7</h1>
+  <div class="subtitle">Peachy Little Moments</div>
+
+  <!-- floating words -->
+  <span class="bg-word" style="top:12%; left:6%; animation-delay:0s">Soft</span>
+  <span class="bg-word" style="top:22%; right:8%; animation-delay:3s">Warmth</span>
+  <span class="bg-word" style="top:65%; left:12%; animation-delay:6s">Comfort</span>
+  <span class="bg-word" style="top:72%; right:10%; animation-delay:9s">Always</span>
+  <span class="bg-word" style="top:40%; left:55%; animation-delay:12s">You</span>
+
+  <div class="message-box">
+    <p class="message">
+      Let this december make you're life feel lighter, nang gothu illi vargu some days still feel heavy but 
+      slowly they will all turn sweeter one at a time! You’re the reason December feels special to me ade tara i want you to be happy & make 
+      you feel special. Ninge adh ashtu bega peace sigli, let more smiles and more little happy things find you sooner. 24 days to your Birthday, Happy Birthday in advance baby 🌸💗.
+    </p>
+  </div>
+
+  <nav>
+    <a class="btn yesterday" href="Dec6.html">⬅ Yesterday</a>
+    <a class="btn archive" href="archive.html">Love Calendar</a>
+   <a class="btn tomorrow" href="Dec8.html">Tomorrow ➜</a>
+  </nav>
+
+  <script>
+    /* Peachy floating emojis */
+    const pool = ["🍑","✨","🌸","💗"];
+    let live = 0;
+    function spawn(){
+      if(live > 26) return;
+      const s = document.createElement("span");
+      s.className = "float";
+      s.textContent = pool[Math.floor(Math.random()*pool.length)];
+      s.style.left = Math.random()*100 + "vw";
+      s.style.fontSize = (16 + Math.random()*20) + "px";
+      s.style.animationDuration = (6 + Math.random()*6) + "s";
+      s.style.opacity = (0.75 + Math.random()*0.25);
+      document.body.appendChild(s);
+      live++;
+      s.addEventListener("animationend", ()=>{ s.remove(); live--; });
+    }
+    setInterval(spawn, 450);
+  </script>
+
+</body>
+</html>
